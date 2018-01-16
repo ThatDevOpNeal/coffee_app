@@ -1,17 +1,15 @@
-import path from 'path';
+var webpack = require('webpack');
+var path = require('path');
 
-export default () => ({  
-  entry: [
-    path.join(__dirname, 'src/index.jsx'),
-  ],
+var BUILD_DIR = path.resolve(__dirname, 'dist/');
+var APP_DIR = path.resolve(__dirname, 'src/');
+
+var config = {
+  entry: APP_DIR + '/index.jsx',
   output: {
-    path: path.join(__dirname, 'src/'),
-    filename: 'app.js',
-  },
-  module: {
-    loaders: [
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
-    ]
-  },
-  devtool: 'source-map'
-});
+    path: BUILD_DIR,
+    filename: 'bundle.js'
+  }
+};
+
+module.exports = config;
