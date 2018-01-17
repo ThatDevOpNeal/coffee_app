@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Item from './itemComponent.jsx';
 import Order from './orderComponent.jsx';
+import ItemAdd from './Item/ItemAdd';
+import ItemDisplay from './Item/ItemDisplay';
 
 export default class App extends Component {
     render () {
@@ -8,7 +9,8 @@ export default class App extends Component {
             <div>
                 <title>Order App</title>
                 <Order/>
-                <Item/>
+                <ItemAdd/>
+                <ItemDisplay/>
             </div>
         );
     }
