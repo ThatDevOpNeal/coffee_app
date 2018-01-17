@@ -10,6 +10,16 @@ export const addOrder = (item, workStatus) => {
     return action;
 }
 
+export const editOrder = (key, order) => {
+    const action = {
+        type: EDIT_ORDER,
+        order,
+        key
+    }
+
+    return action;
+}
+
 export const deleteOrder = (key) => {
     const action = {
         type: DELETE_ORDER,
