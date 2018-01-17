@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Order from './orderComponent.jsx';
+import OrderAdd from './Order/OrderAdd';
+import OrderDisplay from './Order/OrderDisplay';
 import ItemAdd from './Item/ItemAdd';
 import ItemDisplay from './Item/ItemDisplay';
 
@@ -8,7 +9,8 @@ export default class App extends Component {
         return (
             <div>
                 <title>Order App</title>
-                <Order/>
+                <OrderAdd/>
+                <OrderDisplay/>
                 <ItemAdd/>
                 <ItemDisplay/>
             </div>
