@@ -9,7 +9,16 @@ var config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
-  }
+  },
+  module: {
+    loaders: [
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+    ]
+  },
+  resolve: {
+    extensions: [".jsx", ".js"]
+  },
+  devtool: 'source-map'
 };
 
 module.exports = config;
