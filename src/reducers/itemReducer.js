@@ -1,4 +1,4 @@
-import { ADD_ITEM, EDIT_ITEM, DELETE_ITEM } from '../constants';
+import { ADD_ITEM, EDIT_ITEM, DELETE_ITEM, EDIT_ORDER } from '../constants';
 
 let itemCounter = 0;
 
@@ -31,7 +31,12 @@ export const itemReducer = (state = [], action) => {
         case DELETE_ITEM:
             items = deleteByKey(state, action.key);
             return items;
+        case EDIT_ORDER:
+            if (checkInventory && statusChange) {
+                decrementInventory;
+            }
         default:
             return state;
     }
 }
+

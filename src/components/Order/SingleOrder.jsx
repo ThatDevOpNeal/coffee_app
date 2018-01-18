@@ -22,9 +22,11 @@ class SingleOrder extends Component {
             workStatus: this.refs.workStatus.value,
             key: order.key
         }
-        const enough = this.checkInventory(parseInt(data.amount, 10), data.item);
-        
-        enough && editOrder(order.key, data);
+        const checkInventory = this.checkInventory(parseInt(data.amount, 10), data.item);
+        const statusChange = data.workStatus === order.workStatus;
+        data.checkInventory = checkInventory;
+        data.statuschange = statusChange;
+        editOrder(order.key, data);
         this.setState({ isEditing: false })
     }
 
@@ -33,7 +35,15 @@ class SingleOrder extends Component {
         const item = items.find((item) => {
             return item.name === orderItemName;    
         });
-        return orderAmount <= item.amount;
+        return orderAmount <= item.inventory;
+    }
+
+    handleInventory({item, amount, workStatus, key}) {
+        const { items } = this.props;
+        const item = items.find((item) => {
+            return item.name === orderItemName;    
+        });
+        return orderAmount <= item.inventory;
     }
 
     render () {

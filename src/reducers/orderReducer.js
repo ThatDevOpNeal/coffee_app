@@ -26,6 +26,10 @@ export const orderReducer = (state = [], action) => {
             return orders;
         case EDIT_ORDER:
             orders = [...state]
+            if(checkInventory && statusChange) {
+                changeOrderAmount
+            } 
+            changeotherfields()
             orders[action.key] = action.order
             return orders;
         case DELETE_ORDER:
