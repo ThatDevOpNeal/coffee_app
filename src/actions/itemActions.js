@@ -10,6 +10,16 @@ export const addItem = (name, inventory) => {
     return action;
 }
 
+export const editItem = (key, order) => {
+    const action = {
+        type: EDIT_ITEM,
+        order,
+        key
+    }
+    console.log('action in editItem: ', action);
+    return action;
+}
+
 export const deleteItem = (key) => {
     const action = {
         type: DELETE_ITEM,

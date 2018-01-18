@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteItem } from '../../actions/itemActions';
+import { deleteItem, editItem } from '../../actions/itemActions';
+import SingleItem from './SingleItem';
 
 class itemDisplay extends Component {
     constructor(props) {
@@ -21,10 +22,7 @@ class itemDisplay extends Component {
             items.map(item => {
                 return (
                    <li key={item.key} className="list-items">
-                        <div className="list-item">
-                            <div>{item.name}</div>
-                            <div>{item.inventory}</div>
-                        </div>
+                   <SingleItem item={item} editItem={this.props.editItem} />
                         <div
                             className="list-item delete-button"
                             onClick={() => this.deleteItem(item.key)}
@@ -44,4 +42,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { deleteItem })(itemDisplay);
+export default connect(mapStateToProps, { deleteItem, editItem })(itemDisplay);

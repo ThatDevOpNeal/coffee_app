@@ -17,23 +17,21 @@ const deleteByKey = (state = [], key) => {
     return orders; //new array with that specific key filtered out.
 }
 
-const sortOrders = (orders) => orders.sort((a, b) => a.key - b.key);
-
 export const orderReducer = (state = [], action) => {
     let orders = null;
     switch (action.type) {
         case ADD_ORDER:
             orders = [...state, order(action)];
-            return sortOrders(orders);
+            return orders;
         case EDIT_ORDER:
-            orders = [...deleteByKey(state, action.key), action.order]
-            return sortOrders(orders);
+            orders = [...state]
+            orders[action.key] = action.order
+            return orders;
         case DELETE_ORDER:
             orders = deleteByKey(state, action.key);
-            return sortOrders(orders);
+            return orders;
         case DELETE_ALL_ORDERS:
-            orders = []
-            return sortOrders(orders);
+            return [];
         default:
             return state
     }

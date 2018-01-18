@@ -24,7 +24,9 @@ export const itemReducer = (state = [], action) => {
             items = [...state, item(action)];
             return items;
         case EDIT_ITEM:
-            return
+            items = [...state]
+            items[action.key] = action.order
+            return items;
         case DELETE_ITEM:
             items = deleteByKey(state, action.key);
             return items;
