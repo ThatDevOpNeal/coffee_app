@@ -3,10 +3,11 @@ import { ADD_ITEM, EDIT_ITEM, DELETE_ITEM } from '../constants';
 let itemCounter = 0;
 
 const item = (action) => {
-    let { name, inventory } = action; //es6 variable deconstruction
+    let { name, inventory, max } = action; //es6 variable deconstruction
     return {
         name,
         inventory,
+        max,
         key: itemCounter++ // it's okay if this counter increments actually cause we want it to.
     }
 }

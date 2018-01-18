@@ -1,9 +1,10 @@
 import { ADD_ORDER, EDIT_ORDER, DELETE_ORDER, DELETE_ALL_ORDERS } from '../constants'
 
-export const addOrder = (item, workStatus) => {
+export const addOrder = (item, amount, workStatus) => {
     const action = {
         type: ADD_ORDER,
         item,
+        amount,
         workStatus
     }
     console.log('action in addOrder: ', action);

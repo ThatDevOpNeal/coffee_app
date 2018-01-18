@@ -9,10 +9,12 @@ class itemAdd extends Component {
             name: '',
             inventory: 0
         }
+
+        this.addItem = this.addItem.bind(this);
     }
 
     addItem() {
-        this.props.addItem(this.state.name, this.state.inventory);
+        this.props.addItem(this.state.name, this.state.inventory, this.state.inventory);
     }
 
     render() {
@@ -37,7 +39,7 @@ class itemAdd extends Component {
                     <button
                         type="button"
                         className="btn btn-success"
-                        onClick={() => this.addItem()}
+                        onClick={this.addItem}
                     >
                         Add Item!
                     </button>

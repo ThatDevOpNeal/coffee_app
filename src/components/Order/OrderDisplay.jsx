@@ -16,8 +16,10 @@ class orderDisplay extends Component {
         this.props.deleteOrder(key);
     }
 
+
+
     render() {
-        let { orders } = this.props;
+        let { orders} = this.props;
         return (
             orders.map(order => {
                 return (

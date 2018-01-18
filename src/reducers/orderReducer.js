@@ -4,9 +4,10 @@ let keyCounter = 0;
 
 // whatever is being passed in through param has 'item' and 'workStatus'
 const order = (action) => {
-    let { item, workStatus} = action; //es6 variable deconstruction
+    let { item, amount, workStatus} = action; //es6 variable deconstruction
     return {
         item,
+        amount,
         workStatus,
         key: keyCounter++ // it's okay if this counter increments actually cause we want it to.
     }
