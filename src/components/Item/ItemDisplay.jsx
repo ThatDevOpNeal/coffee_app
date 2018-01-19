@@ -8,8 +8,8 @@ class itemDisplay extends Component {
         super(props);
     }
 
-    deleteItem(key) {
-        this.props.deleteItem(key);
+    deleteItem(key, name) {
+        this.props.deleteItem(key, name);
     }
 
     render() {
@@ -21,7 +21,7 @@ class itemDisplay extends Component {
                    <SingleItem item={item} editItem={this.props.editItem} />
                         <div
                             className="list-item delete-button"
-                            onClick={() => this.deleteItem(item.key)}
+                            onClick={() => this.deleteItem(item.key, item.name)}
                         >
                             x
                         </div>

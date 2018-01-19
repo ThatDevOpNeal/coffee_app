@@ -11,27 +11,39 @@ class SingleOrder extends Component {
 
         this.submitForm = this.submitForm.bind(this);
         this.checkInventory = this.checkInventory.bind(this);
+        this.reduceInventoryBool = this.reduceInventoryBool.bind(this);
     }
 
     submitForm(event) {
         event.preventDefault()
         const { order, editOrder } = this.props
+        const oldStatus = order.workStatus;
         const data = {
             item: String(this.refs.item.value).toLowerCase(),
             amount: this.refs.amount.value,
             workStatus: String(this.refs.workStatus.value).toLowerCase(),
             key: order.key
         }
+        const newStatus = data.workStatus;
         const checkInventory = this.checkInventory(parseInt(data.amount, 10), data.item);
-        const open = data.workStatus === 'open';
-        const progress = data.workStatus === 'progress';
-        const complete = data.workStatus === 'complete';
+        const reduceInventoryBool = this.reduceInventoryBool(oldStatus, newStatus);
+        const open = newStatus === 'open';
+        const progress = newStatus === 'progress';
+        const complete = newStatus === 'complete';
         data.checkInventory = checkInventory;
+        data.reduceInventoryBool = reduceInventoryBool;
         data.open = open;
         data.progress = progress;
         data.complete = complete;
         editOrder(order.key, data);
         this.setState({ isEditing: false })
+    }
+
+    reduceInventoryBool(oldStatus, newStatus) {
+        if ((oldStatus == 'open') && (newStatus == 'progress')) {
+            return true;
+        }
+        return false;
     }
 
     checkInventory(orderAmount, orderItemName) {

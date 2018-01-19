@@ -1,4 +1,4 @@
-import { ADD_ORDER, EDIT_ORDER, DELETE_ORDER, DELETE_ALL_ORDERS } from '../constants'
+import { ADD_ORDER, EDIT_ORDER, DELETE_ORDER, DELETE_ALL_ORDERS, DELETE_ITEM } from '../constants'
 
 let keyCounter = 0;
 
@@ -16,6 +16,12 @@ const createOrder = (action) => {
 const deleteByKey = (state = [], key) => {
     const orders = state.filter(order => order.key !== key);
     return orders; //new array with that specific key filtered out.
+}
+
+const cancelOrder = (state = [], name) => {
+    let orders = [...state];
+    orders.map(order => {(order.item == name ? orders[order.key].workStatus = 'cancelled' : true)});
+    return orders;
 }
 
 export const orderReducer = (state = [], action) => {
@@ -42,6 +48,9 @@ export const orderReducer = (state = [], action) => {
             return orders;
         case DELETE_ALL_ORDERS:
             return [];
+        case DELETE_ITEM:
+            orders = cancelOrder(state, action.name);
+            return orders;
         default:
             return state
     }

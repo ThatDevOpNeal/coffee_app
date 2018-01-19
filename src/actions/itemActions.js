@@ -21,10 +21,11 @@ export const editItem = (key, order) => {
     return action;
 }
 
-export const deleteItem = (key) => {
+export const deleteItem = (key, name) => {
     const action = {
         type: DELETE_ITEM,
-        key
+        key,
+        name
     }
     console.log('action in deleteItem: ', action);
     return action;
