@@ -13,17 +13,17 @@ export default class App extends Component {
         this.modifyView = this.modifyView.bind(this);
     }
 
-    modifyView () {
+    modifyView() {
         this.setState({
             isOrderView: this.state.isOrderView ? false : true
         })
     }
 
-    render () {
+    render() {
         return (
             <div>
                 <title>Order App</title>
-                <button onClick={() => this.modifyView()}>Toggle View</button>
+                <button onClick={this.modifyView}>Toggle View</button>
                 {this.state.isOrderView ? (
                     <div>
                         <OrderAdd/>
