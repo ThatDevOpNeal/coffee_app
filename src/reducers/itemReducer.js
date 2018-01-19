@@ -33,10 +33,10 @@ export const itemReducer = (state = [], action) => {
             return items;
         case EDIT_ORDER:
             const { order, key } = action;
-            const { checkInventory, open } = order;
+            const { checkInventory, progress } = order;
             let item;
             items = [...state];
-            if (checkInventory && !open) {
+            if (checkInventory && progress) {
                 item = items.find((item) => { return item.name = order.item});
                 item.inventory = item.inventory - order.amount;
                 items[item.key] = item;

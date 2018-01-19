@@ -33,6 +33,7 @@ export const orderReducer = (state = [], action) => {
             } else {
                 const oldOrder = orders[action.key];
                 oldOrder.workStatus = order.workStatus;
+                oldOrder.amount = order.amount;
                 orders[action.key] = oldOrder;
             }
             return orders;

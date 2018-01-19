@@ -16,7 +16,7 @@ class SingleItem extends Component {
         event.preventDefault()
         const { item, editItem } = this.props
         const data = {
-            name: this.refs.name.value,
+            name: String(this.refs.name.value).toLowerCase(),
             inventory: this.refs.inventory.value,
             max: item.max,
             key: item.key
@@ -35,9 +35,9 @@ class SingleItem extends Component {
                 <input type="submit" />
             </form> :
             <div className="list-order" onClick={() => { this.setState({ isEditing: true })}}>
-                <div>name: {item.name}</div>
-                <div>inventory {item.inventory}</div>
-                <div>max {item.max}</div>
+                <div>Name: {item.name}</div>
+                <div>Inventory {item.inventory}</div>
+                <div>Max {item.max}</div>
             </div>
     }
 }

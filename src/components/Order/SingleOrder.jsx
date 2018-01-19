@@ -17,15 +17,19 @@ class SingleOrder extends Component {
         event.preventDefault()
         const { order, editOrder } = this.props
         const data = {
-            item: this.refs.item.value,
+            item: String(this.refs.item.value).toLowerCase(),
             amount: this.refs.amount.value,
-            workStatus: this.refs.workStatus.value,
+            workStatus: String(this.refs.workStatus.value).toLowerCase(),
             key: order.key
         }
         const checkInventory = this.checkInventory(parseInt(data.amount, 10), data.item);
         const open = data.workStatus === 'open';
+        const progress = data.workStatus === 'progress';
+        const complete = data.workStatus === 'complete';
         data.checkInventory = checkInventory;
         data.open = open;
+        data.progress = progress;
+        data.complete = complete;
         editOrder(order.key, data);
         this.setState({ isEditing: false })
     }
@@ -48,9 +52,9 @@ class SingleOrder extends Component {
                 <input type="submit" />
             </form> :
             <div className="list-order" onClick={() => { this.setState({ isEditing: true })}}>
-                <div>{order.item}</div>
-                <div>{order.amount}</div>
-                <div>{order.workStatus}</div>
+                <div>Item: {order.item}</div>
+                <div>Amount: {order.amount}</div>
+                <div>Status: {order.workStatus}</div>
             </div>
     }
 }
