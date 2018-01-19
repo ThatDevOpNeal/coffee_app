@@ -38,6 +38,12 @@ class SingleItem extends Component {
                 <div>Name: {item.name}</div>
                 <div>Inventory {item.inventory}</div>
                 <div>Max {item.max}</div>
+                <div
+                    className="list-item delete-button"
+                    onClick={() => this.props.deleteItem(item.key, item.name)}
+                >
+                    x
+                </div>
             </div>
     }
 }

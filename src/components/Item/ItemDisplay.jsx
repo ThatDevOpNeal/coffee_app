@@ -8,23 +8,13 @@ class itemDisplay extends Component {
         super(props);
     }
 
-    deleteItem(key, name) {
-        this.props.deleteItem(key, name);
-    }
-
     render() {
         let { items } = this.props;
         return (
             items.map(item => {
                 return (
                    <li key={item.key} className="list-items">
-                   <SingleItem item={item} editItem={this.props.editItem} />
-                        <div
-                            className="list-item delete-button"
-                            onClick={() => this.deleteItem(item.key, item.name)}
-                        >
-                            x
-                        </div>
+                   <SingleItem item={item} editItem={this.props.editItem} deleteItem={this.props.deleteItem} />
                    </li> 
                 )
             })
