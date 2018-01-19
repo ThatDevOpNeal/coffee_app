@@ -3,7 +3,7 @@ import { ADD_ORDER, EDIT_ORDER, DELETE_ORDER, DELETE_ALL_ORDERS } from '../const
 let keyCounter = 0;
 
 // whatever is being passed in through param has 'item' and 'workStatus'
-const order = (action) => {
+const createOrder = (action) => {
     let { item, amount, workStatus} = action; //es6 variable deconstruction
     return {
         item,
@@ -22,15 +22,19 @@ export const orderReducer = (state = [], action) => {
     let orders = null;
     switch (action.type) {
         case ADD_ORDER:
-            orders = [...state, order(action)];
+            orders = [...state, createOrder(action)];
             return orders;
         case EDIT_ORDER:
-            orders = [...state]
-            if(checkInventory && statusChange) {
-                changeOrderAmount
-            } 
-            changeotherfields()
-            orders[action.key] = action.order
+            const { order, key } = action;
+            const { checkInventory, open } = order;
+            orders = [...state];
+            if(checkInventory && open) {
+                orders[action.key] = action.order
+            } else {
+                const oldOrder = orders[action.key];
+                oldOrder.workStatus = order.workStatus;
+                orders[action.key] = oldOrder;
+            }
             return orders;
         case DELETE_ORDER:
             orders = deleteByKey(state, action.key);

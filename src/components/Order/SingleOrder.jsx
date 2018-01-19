@@ -23,22 +23,14 @@ class SingleOrder extends Component {
             key: order.key
         }
         const checkInventory = this.checkInventory(parseInt(data.amount, 10), data.item);
-        const statusChange = data.workStatus === order.workStatus;
+        const open = data.workStatus === 'open';
         data.checkInventory = checkInventory;
-        data.statuschange = statusChange;
+        data.open = open;
         editOrder(order.key, data);
         this.setState({ isEditing: false })
     }
 
     checkInventory(orderAmount, orderItemName) {
-        const { items } = this.props;
-        const item = items.find((item) => {
-            return item.name === orderItemName;    
-        });
-        return orderAmount <= item.inventory;
-    }
-
-    handleInventory({item, amount, workStatus, key}) {
         const { items } = this.props;
         const item = items.find((item) => {
             return item.name === orderItemName;    

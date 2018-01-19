@@ -2,7 +2,7 @@ import { ADD_ITEM, EDIT_ITEM, DELETE_ITEM, EDIT_ORDER } from '../constants';
 
 let itemCounter = 0;
 
-const item = (action) => {
+function createItem(action)  {
     let { name, inventory, max } = action; //es6 variable deconstruction
     return {
         name,
@@ -22,7 +22,7 @@ export const itemReducer = (state = [], action) => {
     let items = null;
     switch (action.type) {
         case ADD_ITEM:
-            items = [...state, item(action)];
+            items = [...state, createItem(action)];
             return items;
         case EDIT_ITEM:
             items = [...state]
@@ -32,9 +32,16 @@ export const itemReducer = (state = [], action) => {
             items = deleteByKey(state, action.key);
             return items;
         case EDIT_ORDER:
-            if (checkInventory && statusChange) {
-                decrementInventory;
-            }
+            const { order, key } = action;
+            const { checkInventory, open } = order;
+            let item;
+            items = [...state];
+            if (checkInventory && !open) {
+                item = items.find((item) => { return item.name = order.item});
+                item.inventory = item.inventory - order.amount;
+                items[item.key] = item;
+            }   
+            return items;
         default:
             return state;
     }
