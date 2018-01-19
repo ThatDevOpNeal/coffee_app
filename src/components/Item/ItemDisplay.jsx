@@ -6,10 +6,6 @@ import SingleItem from './SingleItem';
 class itemDisplay extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: '',
-            inventory: 0
-        }
     }
 
     deleteItem(key) {

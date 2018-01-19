@@ -18,6 +18,7 @@ class SingleItem extends Component {
         const data = {
             name: this.refs.name.value,
             inventory: this.refs.inventory.value,
+            max: item.max,
             key: item.key
         }
         
@@ -34,8 +35,9 @@ class SingleItem extends Component {
                 <input type="submit" />
             </form> :
             <div className="list-order" onClick={() => { this.setState({ isEditing: true })}}>
-                <div>{item.name}</div>
-                <div>{item.inventory}</div>
+                <div>name: {item.name}</div>
+                <div>inventory {item.inventory}</div>
+                <div>max {item.max}</div>
             </div>
     }
 }

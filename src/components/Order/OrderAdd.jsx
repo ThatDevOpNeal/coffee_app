@@ -7,12 +7,13 @@ class orderAdd extends Component {
         super(props);
         this.state = {
             item: '',
+            amount: 0,
             workStatus: 'open'
         }
     }
 
     addOrder() {
-        this.props.addOrder(this.state.item, this.state.workStatus);
+        this.props.addOrder(this.state.item, this.state.amount, this.state.workStatus);
     }
 
     render() {
@@ -28,6 +29,7 @@ class orderAdd extends Component {
                             placeholder="what would you like?"
                             onChange={event => this.setState({item: event.target.value})}
                         />
+                        <input placeholder="amount" onChange={(evt) => {this.setState({amount: evt.target.value})}} />
                     </div>
                     <button
                         type="button"
